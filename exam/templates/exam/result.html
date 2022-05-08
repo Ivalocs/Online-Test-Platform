@@ -1,0 +1,28 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+<main class="profile my-md">
+    <div class="container">
+      <div class="layout">
+        <div class="content-box">
+          <div class="card text-center">
+            <div class="card__body dev">
+            <ul>
+            {% for i in display %}
+              <div class="devInfo my-top-three">
+                <center>
+                <li class="devInfo__about">
+                  {{i}}
+              </li>
+            </center>
+              </div>
+            {% endfor %}
+          </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+{% endblock content %}

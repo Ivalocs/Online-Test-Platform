@@ -1,0 +1,46 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+<div class="auth">
+    <div class="card">
+      <div class="auth__header text-center">
+        <a href="/">
+          <img src="{% static 'images/icon.svg' %}" alt="icon" />
+        </a>
+        <h3>{{test_name}}</h3>
+        <p>By {{by_name}}</p>
+      </div>
+
+
+      <form action="{% url 'report' id %}" method ="POST" class="form auth__form">
+        {% csrf_token %}
+        {% for question in questions %}
+        
+        <div class="form__field">
+            <label for="formInput#text">{{ question.question }}</label>
+        </div>
+        
+        <input type = "radio" name = "radio_{{question.question}}" value = "1">{{question.options.0}}</input>
+        <br>
+        <input type = "radio" name = "radio_{{question.question}}" value = "2">{{question.options.1}}</input>
+        <br>
+        <input type = "radio" name = "radio_{{question.question}}" value = "3">{{question.options.2}}</input>
+        <br>
+        <input type = "radio" name = "radio_{{question.question}}" value = "4">{{question.options.3}}</input>
+
+
+        {% endfor %}
+        <div class="auth__actions">
+            <input class="btn btn--sub btn--lg" type="submit" value="Submit" />
+        </div>
+      </form>
+      </div>
+      </div>
+</section>
+
+
+
+
+
+{% endblock content %}

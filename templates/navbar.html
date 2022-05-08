@@ -1,0 +1,41 @@
+{% load static %}
+
+<!-- Header Section -->
+<header class="header">
+    <div class="container container--narrow">
+        <a href="" class="header__logo">
+            <!-- {% static 'images/logo.svg' %} -->
+            <img src="{% static 'images/icon.png' %}" alt="DevSearch Logo" /> 
+            <!-- {% static 'images/logo.svg' %}  -->
+        </a>
+
+        <nav class="header__nav">
+            <input type="checkbox" id="responsive-menu" />
+            <label for="responsive-menu" class="toggle-menu">
+                <span>Menu</span>
+                <div class="toggle-menu__lines"></div>
+            </label>
+            <ul class="header__menu">
+                {% if page_id == 3 %}
+                    <li class="header__menuItem"><a href="{% url 'applicant-profile' details.username %}">Profile</a></li>
+                    <li class="header__menuItem"><a href="{% url 'list-tests' %}">Take Test</a></li>
+                {% endif %}
+                {% if page_id == 5 %}
+                    <li class="header__menuItem"><a href="{% url 'applicant-profile' username %}">Profile</a></li>
+                    <li class="header__menuItem"><a href="{% url 'list-tests' %}">Take Test</a></li>
+                {% endif %}
+                {% if page_id == 6 %}
+                    <li class="header__menuItem"><a href="{% url 'applicant-profile' username %}">Profile</a></li>
+                    <li class="header__menuItem"><a href="{% url 'list-tests' %}">Take Test</a></li>
+                {% endif %}
+                {% if page_id == 4 %}
+                    <li class="header__menuItem"><a href="{% url 'recruiter-profile' details.username %}">Profile</a></li>
+                    <li class="header__menuItem"><a href="{% url 'register-exam' %}">Create Test</a></li>
+                {% endif %}
+                {% if request.user.is_authenticated %}
+                    <li class="header__menuItem"><a href="{% url 'logout' %}" class="btn btn--sub">Logout</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+</header>

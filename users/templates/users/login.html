@@ -1,0 +1,43 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+
+  <div class="auth">
+    <div class="card">
+      <div class="auth__header text-center">
+        <a href="/">
+          <img src="{% static 'images/icon.svg' %}" alt="icon" />
+        </a>
+        <h3>Account Login</h3>
+        <p>Welcome to online test platorm</p>
+      </div>
+
+      <form action="{% url 'login' %}" method ="POST" class="form auth__form">
+        {% csrf_token%}
+        <!-- Input:username -->
+        <div class="form__field">
+          <label for="formInput#text">Username: </label>
+          <input class="input input--text" id="formInput#text" type="text" name="username"
+            placeholder="Enter your username ..." />
+        </div>
+
+        <!-- Input:Password -->
+        <div class="form__field">
+          <label for="formInput#password">Password: </label>
+          <input class="input input--password" id="formInput#passowrd" type="password" name="password"
+            placeholder="Enter your password ..." />
+        </div>
+
+        <div class="auth__actions">
+          <input class="btn btn--sub btn--lg" type="submit" value="Log In" />
+        </div>
+      </form>
+      <div class="auth__alternative">
+        <p>Don’t have an Account?</p>
+        <a href="{% url 'register' %}">Register</a>
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}

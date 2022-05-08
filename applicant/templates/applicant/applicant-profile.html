@@ -1,0 +1,26 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+<main class="profile my-md">
+    <div class="container">
+      <div class="layout">
+        <div class="content-box">
+          <div class="card text-center">
+            <div class="card__body dev">
+              <img class="avatar avatar--xl" src="{{details.profile_image.url}}" />
+              <h2 class="dev__name">{{details.name}}</h2>
+              <p class="dev__title">Applicant</p>
+              <div class="devInfo my-top-three">
+                <h3 class="devInfo__title">Bio</h3>
+                <p class="devInfo__about">
+                  {{details.bio}}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+{% endblock content %}
