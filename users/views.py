@@ -36,9 +36,9 @@ def register_user(request):
                     name = new_user.first_name
                 )
         context = {'page_id':1}
-        return redirect("login", context)
+        return redirect("login")
     else:
-        print("Error")
+        return redirect("login")
     context = {'formA':formA, 'formB':formB, 'page_id':2}
     return render(request, 'users/register.html', context)
 
