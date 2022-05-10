@@ -33,7 +33,7 @@
       pip:
         name: docker
 
-    - name: Pull calculator docker image
+    - name: Pull docker image
       community.docker.docker_image:
         name: psychik/online_test_platform
         source: pull
