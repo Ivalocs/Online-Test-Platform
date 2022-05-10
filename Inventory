@@ -1,4 +1,4 @@
-Application_Server ansible_host=3.89.129.199
+Application_Server ansible_host=3.85.27.98
 
 [Application_Server_group]
 Application_Server
