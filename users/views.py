@@ -85,8 +85,7 @@ def login_user(request):
             if applicant_user is not None:
                 return redirect('applicant-profile', pk = applicant_user.username)
             else:
-                print("Error")
-                # return redirect('recruiter-profile', pk = recruiter_user.username)
+                return redirect('recruiter-profile', pk = recruiter_user.username)
         else:
             print("ERROR")
     context = {'page_id':1}
