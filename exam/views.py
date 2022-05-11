@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from .forms import ExamCreationForm 
 # Create your views here.
 from django.contrib.auth.decorators import login_required
-from .models import exam_details
+from .models import exam_details, exam_given
 from recruiter.models import recruiter_profile_model
 
 
@@ -25,6 +25,10 @@ def register_exam(request):
                     created_by = recruiter_user,
                     name = exam_form.cleaned_data['name'],
                     questions = exam_form.cleaned_data['questions'])
+                aux = exam_given.objects.create(
+                    name = recruiter_user,
+                    exam = exam_form.cleaned_data['name']
+                )
         return redirect("recruiter-profile", request.user)
     context = {"exam_form" : exam_form, "page_id" : 5, "username":request.user}
     return render(request, "exam/exam_form.html", context)
@@ -63,6 +67,12 @@ def report(request, pk):
         else:
             incorrect += 1
             display.append(q + " : incorrect")
+    aux = exam_given.objects.create(
+        name = request.user,
+        exam = exam.name,
+        correct = correct,
+        incorrect = incorrect
+    )
     context = {'display':display, 'correct':correct, 'incorrect':incorrect, 'page_id':6, 'username':request.user}
     return render(request, "exam/result.html", context)
 
