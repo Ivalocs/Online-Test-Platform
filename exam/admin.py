@@ -4,3 +4,4 @@ from django.contrib import admin
 from .models import exam_details
 
 admin.site.register(exam_details)
+admin.site.register(exam_given)
