@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('Git Clone') {
       steps {
-        git([url: 'https://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@github.com/Psychik-N/online_test_platform.git', branch: 'master', credentialsId: 'psychik-github'])
+        git([url: 'https://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@github.com/Psychik-N/online_test_platform.git', branch: 'master', credentialsId: 'psychik-github'])
 
       }
     }
