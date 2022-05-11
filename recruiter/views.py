@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 
 from .models import recruiter_profile_model
+from exam.models import exam_given
 
 def recruiter_profile(request, pk):
     if request.user.is_authenticated:
@@ -13,7 +14,11 @@ def recruiter_profile(request, pk):
         except:
             details = None
         if details is not None:
-            context = {'details':details, 'page_id':4}
+            try:
+                exam = exam_given.objects.filter(name = details.username)
+            except exam_given.DoesNotExist:
+                exam = None
+            context = {'details':details, 'page_id':4, 'exam':exam}
             return render(request, 'recruiter/recruiter-profile.html', context)
         else:
             print('Error')
