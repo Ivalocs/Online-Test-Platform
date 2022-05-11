@@ -28,5 +28,24 @@
         </div>
       </div>
     </div>
+    <div class="container">
+      <div class="grid grid--three">
+      {% for i in exam %}
+          <div class="column">
+              <div class="card project">
+                  <a href="" class="project">
+                      <div class="card__body">
+                          <h3 class="project__title">{{i.exam}}</h3>
+
+                          <p>by {{i.name}}
+                          </p>
+                         
+                      </div>
+                  </a>
+              </div>
+          </div>
+      {% endfor %}
+      </div>
+  </div>
   </main>
 {% endblock content %}
