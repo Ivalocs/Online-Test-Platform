@@ -15,10 +15,14 @@ def register_user(request):
         formA = CustomUserCreationForm(request.POST) #This is validating the process
         formB = RegisterAsForm(request.POST)
         registered_by = ''
+        bio = ''
         if formB.is_valid():
+            formB.save(commit = False)
             registered_by = formB.cleaned_data['who']
+            bio = formB.cleaned_data['bio']
         else:
             registered_by = 'Applicant'
+        
         if formA.is_valid():
             new_user = formA.save(commit = False)
             new_user.username = new_user.username.lower()
@@ -27,15 +31,17 @@ def register_user(request):
                 profile = applicant_profile_model.objects.create(
                     user = new_user,
                     username = new_user.username,
-                    name = new_user.first_name
+                    name = new_user.first_name,
+                    bio = bio,
+                    profile_image = formB.cleaned_data['image'] 
                 )
             else:
                 profile = recruiter_profile_model.objects.create(
                     user = new_user,
                     username = new_user.username,
-                    name = new_user.first_name
+                    name = new_user.first_name,
+                    bio = bio
                 )
-        context = {'page_id':1}
         return redirect("login")
     else:
         return redirect("login")
