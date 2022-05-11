@@ -3,6 +3,7 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth.models import User
+from exam.models import exam_given
 
 from .models import applicant_profile_model
 
@@ -13,7 +14,11 @@ def applicant_profile(request, pk):
         except:
             details = None
         if details is not None:
-            context = {'details':details, 'page_id':3}
+            try:
+                exam = exam_given.objects.filter(name = details.username)
+            except exam_given.DoesNotExist:
+                exam = None
+            context = {'details':details, 'exam':exam, 'page_id':3}
             return render(request, 'applicant/applicant-profile.html', context)
         else:
             page = 1
