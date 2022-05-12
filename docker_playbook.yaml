@@ -44,6 +44,5 @@
         image: psychik/online_test_platform
         state: started
         recreate: yes
-        restart: yes
         ports:
         -  7000:8000
